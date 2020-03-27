@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  color: #000;
+  background-color: #43333f;
+}
+
+.center-vh-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100vh;
+}
+
+.center-vh-item {
+  width: 300px;
+  display: grid;
+  grid-template: auto / 1fr 1fr 1fr;
+  grid-gap: 16px 10px;
+}
