@@ -3,9 +3,9 @@ import './DrumPad.scss';
 
 function DrumPad(props) {
   return (
-    <div className='drum-pad' onClick={props.click} id={props.letter}>
+    <div className='drum-pad' onClick={props.click} id={props.name}>
       {props.letter}
-      <audio src={props.clip} id={`play${props.letter}`}></audio>
+      <audio src={props.clip} className='clip' id={props.letter}></audio>
     </div>
   );
 }

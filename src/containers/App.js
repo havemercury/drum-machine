@@ -78,8 +78,8 @@ class App extends Component {
   checkKeyDown(e) {
     for (let i = 0; i < drumPads.length; i++) {
       if (e.key === drumPads[i].trigger) {
-        this.playAudio(e.key);
-        let pressedPad = document.getElementById(e.key);
+        this.playAudio(e.key, drumPads[i].name);
+        let pressedPad = document.getElementById(`${drumPads[i].name}`);
         pressedPad.classList.add('playing');
         const removePlayingClass = () => pressedPad.classList.remove('playing');
         setTimeout(removePlayingClass, 200);
@@ -87,10 +87,14 @@ class App extends Component {
     }
   }
 
-  playAudio(id) {
-    let audio = document.getElementById(`play${id}`);
+  playAudio(id, name) {
+    let audio = document.getElementById(id);
     audio.currentTime = 0;
     audio.play();
+
+    this.setState({
+      display: name
+    });
   }
 
   render() {
@@ -99,7 +103,8 @@ class App extends Component {
         letter={pad.trigger}
         clip={pad.clip}
         key={pad.trigger}
-        click={this.playAudio.bind(this, pad.trigger)}
+        name={pad.name}
+        click={this.playAudio.bind(this, pad.trigger, pad.name)}
       />
     ));
     return (
@@ -109,8 +114,6 @@ class App extends Component {
             <Heading title='Drum Machine' />
             <Display text={this.state.display} />
             {drumPadDisplay}
-
-            {/* <DrumPad letter='q' clip={boom} /> */}
           </div>
         </div>
       </div>
