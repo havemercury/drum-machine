@@ -18,47 +18,47 @@ const drumPads = [
   {
     name: 'openhat',
     clip: openhat,
-    trigger: 'q'
+    trigger: 'Q'
   },
   {
     name: 'hihat',
     clip: hihat,
-    trigger: 'w'
+    trigger: 'W'
   },
   {
     name: 'clap',
     clip: clap,
-    trigger: 'e'
+    trigger: 'E'
   },
   {
     name: 'kick',
     clip: kick,
-    trigger: 'a'
+    trigger: 'A'
   },
   {
     name: 'snare',
     clip: snare,
-    trigger: 's'
+    trigger: 'S'
   },
   {
     name: 'tom',
     clip: tom,
-    trigger: 'd'
+    trigger: 'D'
   },
   {
     name: 'tink',
     clip: tink,
-    trigger: 'z'
+    trigger: 'Z'
   },
   {
     name: 'ride',
     clip: ride,
-    trigger: 'x'
+    trigger: 'X'
   },
   {
     name: 'boom',
     clip: boom,
-    trigger: 'c'
+    trigger: 'C'
   }
 ];
 
@@ -77,8 +77,9 @@ class App extends Component {
 
   checkKeyDown(e) {
     for (let i = 0; i < drumPads.length; i++) {
-      if (e.key === drumPads[i].trigger) {
-        this.playAudio(e.key, drumPads[i].name);
+      let keyPressed = e.key.toUpperCase();
+      if (keyPressed === drumPads[i].trigger) {
+        this.playAudio(keyPressed, drumPads[i].name);
         let pressedPad = document.getElementById(`${drumPads[i].name}`);
         pressedPad.classList.add('playing');
         const removePlayingClass = () => pressedPad.classList.remove('playing');
